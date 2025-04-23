@@ -1,10 +1,29 @@
-let DEFAULT_OPERATOR = "addition";
+const DEFAULT_OPERATOR = "number";
+const DEFAULT_DISPLAY = "";
 
 currentOperator = DEFAULT_OPERATOR;
+currentDisplay = DEFAULT_DISPLAY;
+
+const addition = document.querySelector("#add");
+const subtraction = document.querySelector("#subtract");
+const multiplication = document.querySelector("#multiply");
+const divison = document.querySelector("#divide");
+const one = document.querySelector("#one");
+const two = document.querySelector("#two");
+
 
 function changeOperator(newOperator) {
     currentOperator = newOperator;
 }
+
+function changeDisplay(newDisplay) {
+    currentDisplay += newDisplay;
+}
+
+addition.addEventListener("click", changeOperator("addition"));
+one.addEventListener("click", changeDisplay("1"));
+
+console.log(currentDisplay);
 
 function operate(a, b) {
     a = 1;

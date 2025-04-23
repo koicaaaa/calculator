@@ -137,7 +137,7 @@ button {
 .topThree {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 16px;
 }
 
 .calculatorOutput {
