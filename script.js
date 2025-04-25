@@ -4,7 +4,6 @@ let currentOperation = null;
 let shouldResetScreen = false;
 
 const display = document.querySelector(".calculatorOutput");
-
 const operators = document.querySelectorAll("[data-operator]");
 const numbers = document.querySelectorAll("[data-number]");
 const equalBtn = document.getElementById("equal");
