@@ -10,34 +10,36 @@
     <body>
         <div class="upper">
             <div class="calculatorBox">
-                <div class="calculatorOutput">0</div>
+                <div class="calculatorLook">
+                    <div class="calculatorOutput"></div>
+                </div>
             
                 <div class="operateButtons">
                     <div class="topThree">
                     <button id="allClear">AC</button>
-                    <button id="delete">C</button>
-                    <button id="divide">÷</button>
+                    <button id="deleteButton">C</button>
+                    <button id="divide" data-operator>÷</button>
                     </div>
                     
                     <div class="below">
                         <div class="digits">
-                        <button id="seven">7</button>
-                        <button id="eight">8</button>
-                        <button id="nine">9</button>
-                        <button id="multiply">x</button>
-                        <button id="four">4</button>
-                        <button id="five">5</button>
-                        <button id="six">6</button>
-                        <button id="subtract">-</button>
-                        <button id="one">1</button>
-                        <button id="two">2</button>
-                        <button id="three">3</button>
-                        <button id="add">+</button>
+                        <button id="seven" data-number>7</button>
+                        <button id="eight" data-number>8</button>
+                        <button id="nine" data-number>9</button>
+                        <button id="multiply" data-operator>x</button>
+                        <button id="four" data-number>4</button>
+                        <button id="five" data-number>5</button>
+                        <button id="six" data-number>6</button>
+                        <button id="subtract" data-operator>-</button>
+                        <button id="one" data-number="">1</button>
+                        <button id="two" data-number="">2</button>
+                        <button id="three" data-number="">3</button>
+                        <button id="add" data-operator="">+</button>
                         </div>
                     </div>
 
                     <div class="bottomTwo">
-                    <button id="zero">0</button>
+                    <button id="zero" data-number="">0</button>
                     <button id="equal">=</button>
                     </div>
                 </div>

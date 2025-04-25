@@ -48,7 +48,7 @@ button {
     background-color: rgb(155, 167, 185);
 }
 
-#delete {
+#deleteButton {
     width: 80px;
     background-color: rgb(155, 167, 185);
 }
@@ -140,7 +140,7 @@ button {
     gap: 16px;
 }
 
-.calculatorOutput {
+.calculatorLook {
     height: 8rem;
     font-size: 2rem;
     font-family: Verdana, sans-serif;

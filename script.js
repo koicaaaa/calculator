@@ -1,62 +1,113 @@
-const DEFAULT_OPERATOR = "number";
-const DEFAULT_DISPLAY = "";
+let firstOperand = "";
+let secondOperand = "";
+let currentOperation = null;
+let shouldResetScreen = false;
 
-currentOperator = DEFAULT_OPERATOR;
-currentDisplay = DEFAULT_DISPLAY;
+const display = document.querySelector(".calculatorOutput");
 
-const addition = document.querySelector("#add");
-const subtraction = document.querySelector("#subtract");
-const multiplication = document.querySelector("#multiply");
-const divison = document.querySelector("#divide");
-const one = document.querySelector("#one");
-const two = document.querySelector("#two");
+const operators = document.querySelectorAll("[data-operator]");
+const numbers = document.querySelectorAll("[data-number]");
+const equalBtn = document.getElementById("equal");
+const deleteBtn = document.getElementById("deleteButton");
+const clear = document.getElementById("allClear");
+
+deleteBtn.addEventListener("click", deleteNumber);
+clear.addEventListener("click", clearNumbers);
+equalBtn.addEventListener("click", evaluate);
 
 
-function changeOperator(newOperator) {
-    currentOperator = newOperator;
-}
+numbers.forEach((button) => {
+    button.addEventListener("click", () => {
+        appendNumber(button.textContent);
+    })
+})
 
-function changeDisplay(newDisplay) {
-    currentDisplay += newDisplay;
-}
+operators.forEach((operator) => {
+    operator.addEventListener("click", () => {
+        changeOperation(operator.textContent);
+    })
+})
 
-addition.addEventListener("click", changeOperator("addition"));
-one.addEventListener("click", changeDisplay("1"));
-
-console.log(currentDisplay);
-
-function operate(a, b) {
-    a = 1;
-    b = 2;
-
-    if (currentOperator === "addition") {
-        arrayList = [a, b];
-        result1 = add(arrayList);
-        result2 = subtract(arrayList);
-        result3 = multiply(arrayList);
-        result4 = divide(arrayList);
-
-        console.log(result1);
-        console.log(result2);
-        console.log(result3);
-        console.log(result4);
+function appendNumber(num) {
+    if (display.textContent === "0" || shouldResetScreen) {
+        resetScreen();
     }
+    display.textContent += num;
 }
 
-operate();
-
-function add(array) {
-    return array.reduce((product, current) => product + current);
+function resetScreen() {
+    display.textContent = "";
+    shouldResetScreen = false;
 }
 
-function subtract(array) {
-    return array.reduce((product, current) => product - current);
+function clearNumbers() {
+    display.textContent = "0";
+    firstOperand = "";
+    secondOperand = "";
+    currentOperation = null;
 }
 
-function multiply(array) {
-    return array.reduce((product, current) => product * current);
+function deleteNumber() {
+    display.textContent = display.textContent
+    .toString()
+    .slice(0, -1)
 }
 
-function divide(array) {
-    return array.reduce((product, current) => product / current);
+function changeOperation(operator) {
+    if (currentOperation !== null) {
+        evaluate()
+    }
+    firstOperand = display.textContent;
+    currentOperation = operator;
+    shouldResetScreen = true;
+}
+
+function evaluate() {
+    if (currentOperation === null || shouldResetScreen) return;
+    if (currentOperation === "÷" && display.textContent === "0") {
+        alert("You can't divide by 0.");
+        return;
+    }
+    secondOperand = display.textContent
+    display.textContent = roundResult(operate(currentOperation, firstOperand, secondOperand))
+    currentOperation = null;
+}
+
+function roundResult(number) {
+    return Math.round(number * 1000) / 1000;
+}
+
+function add(a, b) {
+    return a + b;
+}
+
+function subtract(a, b) {
+    return a - b;
+}
+
+function multiply(a, b) {
+    return a * b;
+}
+
+function divide(a, b) {
+    return a / b;
+}
+
+function operate(operator, a, b) {
+    a = Number(a);
+    b = Number(b);
+
+    switch (operator) {
+        case "+":
+            return add(a, b);
+        case "-":
+            return subtract(a, b);
+        case "x":
+            return multiply(a, b);
+        case "÷":
+            if (b === 0) return null
+            return divide(a, b);
+        default:
+            return null;
+    }
 }
